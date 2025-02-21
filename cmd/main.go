@@ -27,7 +27,7 @@ func main() {
 	router := gin.Default()
 	router.POST("/api/v1/shorten", handler.Shorten)
 	router.GET("/:shortCode", handler.Redirect)
-	// router.GET("/api/v1/stats/:shortCode", handler.GetStats)
+	router.GET("/api/v1/stats/:shortCode", handler.GetStats)
 
 	router.Run(":8080")
 }

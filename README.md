@@ -9,12 +9,12 @@ curl -X POST http://localhost:8080/api/v1/shorten \
 **访问短链接**
 
 ```sh
-curl -v http://localhost:8080/abc123
+curl -v http://localhost:8080/1
 ```
 
 **查看统计**
 
 ```sh
-curl http://localhost:8080/api/v1/stats/abc123
+curl http://localhost:8080/api/v1/stats/1
 ```
 
