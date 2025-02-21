@@ -3,7 +3,6 @@ package utils
 import "testing"
 
 func TestBase62Encode(t *testing.T) {
-
 	tests := []struct {
 		num int64
 		expected string

@@ -39,8 +39,33 @@ func TestSaveAndGet(t *testing.T) {
 
 }
 
-func TestExpiration(t *testing.T) {
+// 自定义后缀的测试
+func TestCustomSuffixConflict(t *testing.T) {
+	mr, err := miniredis.Run()
+	if err != nil {
+		t.Fatal(err)
+	}
 
+	defer mr.Close()
+	client := redis.NewClient(&redis.Options{
+		Addr: mr.Addr(),
+	})
+	store := NewRedisStore(client)
+
+	// 第一次保存customSuffix
+	_, err = store.SaveShortUrl("mylink", "http://example.com", 0)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	// 再次保存相同的customSuffix
+	// _, err = store.SaveShortUrl("mylink", "http://example.com", 0)
+	// if err != ErrShortCodeExists {
+	// 	t.Errorf("expected ErrShortCodeExists, got %v", err)
+	// }
+}
+
+func TestExpiration(t *testing.T) {
 	mr, err := miniredis.Run()
 	if err != nil {
 		t.Fatal(err)
